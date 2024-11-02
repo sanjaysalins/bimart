@@ -55,25 +55,25 @@
                             <a class="nav-link" href="#services">Services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#details">Details</a>
+                            <a class="nav-link" href="#gallery">Gallery</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#pricing">Pricing</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Drop</a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
-                                <li><a class="dropdown-item" href="article.html">Article Details</a></li>
-                                <li><div class="dropdown-divider"></div></li>
-                                <li><a class="dropdown-item" href="terms.html">Terms Conditions</a></li>
-                                <li><div class="dropdown-divider"></div></li>
-                                <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>
-                            </ul>
-                        </li>
+<!--                        <li class="nav-item dropdown">-->
+<!--                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Drop</a>-->
+<!--                            <ul class="dropdown-menu" aria-labelledby="dropdown01">-->
+<!--                                <li><a class="dropdown-item" href="article.html">Article Details</a></li>-->
+<!--                                <li><div class="dropdown-divider"></div></li>-->
+<!--                                <li><a class="dropdown-item" href="terms.html">Terms Conditions</a></li>-->
+<!--                                <li><div class="dropdown-divider"></div></li>-->
+<!--                                <li><a class="dropdown-item" href="privacy.html">Privacy Policy</a></li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
                     </ul>
-                    <span class="nav-item">
-                        <a class="btn-outline-sm" href="log-in.html">Log in</a>
-                    </span>
+<!--                    <span class="nav-item">-->
+<!--                        <a class="btn-outline-sm" href="log-in.html">Log in</a>-->
+<!--                    </span>-->
                 </div> <!-- end of navbar-collapse -->
             </div> <!-- end of container -->
         </nav> <!-- end of navbar -->
@@ -323,7 +323,7 @@
 
 
 
-<!--        &lt;!&ndash; Details 1 &ndash;&gt;-->
+<!--                &lt;!&ndash; Details 1 &ndash;&gt;-->
 <!--        <div id="details" class="basic-1 bg-gray">-->
 <!--            <div class="container">-->
 <!--                <div class="row">-->
@@ -430,112 +430,195 @@
 
 
 
+        <!-- Project Images Slider -->
+        <div id="gallery" class="slider-1 bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="h2-heading">Project Gallery</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Card Slider -->
+                        <div class="slider-container">
+                            <div class="swiper-container card-slider">
+                                <div class="swiper-wrapper" id="project-slider">
+                                    <!-- Dynamic slides will be inserted here by JavaScript -->
+                                </div>
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // JavaScript to dynamically load images
+            const projects = [
+                { name: "Balustrade replaced", path: "images/project/images/Balustrade replaced" },
+                { name: "Metal shed", path: "images/project/images/Metal shed" },
+            ];
+
+            const sliderContainer = document.getElementById("project-slider");
+
+            projects.forEach(project => {
+                // Thumbnail slide for each project
+                const slide = document.createElement("div");
+                slide.classList.add("swiper-slide");
+                slide.innerHTML = `
+            <div class="card">
+                <img class="card-image" src="${project.path}/thumbnail.webp" alt="${project.name}">
+                <div class="card-body">
+                    <p class="project-title">${project.name}</p>
+                    <button class="btn-outline-sm" onclick="showGallery('${project.path}')">View Gallery</button>
+                </div>
+            </div>
+        `;
+                sliderContainer.appendChild(slide);
+            });
+
+            // Function to open the gallery view for a project
+            function showGallery(projectPath) {
+                // Gallery modal or lightbox implementation to show all images in the project folder
+                // This example assumes the projectPath contains files named 1.webp, 2.webp, etc.
+                let galleryHtml = '';
+                for (let i = 1; i <= 5; i++) {
+                    const imgSrc = `${projectPath}/${i}.webp`;
+                    galleryHtml += `<img src="${imgSrc}" alt="Project Image ${i}" class="gallery-image">`;
+                }
+
+                // Display galleryHtml in a modal or lightbox (implement modal HTML as needed)
+                document.getElementById("galleryModalContent").innerHTML = galleryHtml;
+                document.getElementById("galleryModal").style.display = "block";
+            }
+        </script>
+
+        <!-- Gallery Modal (Hidden initially) -->
+        <div id="galleryModal" class="modal">
+            <span class="close" onclick="document.getElementById('galleryModal').style.display='none'">&times;</span>
+            <div class="modal-content" id="galleryModalContent"></div>
+        </div>
+
+        <style>
+            /* Add some basic modal styling */
+            .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.8); }
+            .modal-content { margin: 10% auto; padding: 20px; width: 80%; text-align: center; }
+            .close { position: absolute; top: 15px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
+            .gallery-image { max-width: 100%; height: auto; margin: 10px; }
+        </style>
 
 
-<!--        &lt;!&ndash; Testimonials &ndash;&gt;-->
-<!--        <div class="slider-1 bg-gray">-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-lg-12">-->
-<!--                        <h2 class="h2-heading">Few words from our clients</h2>-->
-<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
-<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
-<!--                <div class="row">-->
-<!--                    <div class="col-lg-12">-->
 
-<!--                        &lt;!&ndash; Card Slider &ndash;&gt;-->
-<!--                        <div class="slider-container">-->
-<!--                            <div class="swiper-container card-slider">-->
-<!--                                <div class="swiper-wrapper">-->
-<!--                                    -->
-<!--                                    &lt;!&ndash; Slide &ndash;&gt;-->
-<!--                                    <div class="swiper-slide">-->
-<!--                                        <div class="card">-->
-<!--                                            <img class="card-image" src="images/testimonial-1.jpg" alt="alternative">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <p class="testimonial-text">Tortor sodales eget. Vivamus imperdiet leo eu risus tincidunt uris. Proin placerat, urna hendrerit placerat erase convallis</p>-->
-<!--                                                <p class="testimonial-author">Jude Thorn - Designer</p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div> &lt;!&ndash; end of swiper-slide &ndash;&gt;-->
-<!--                                    &lt;!&ndash; end of slide &ndash;&gt;-->
-<!--            -->
-<!--                                    &lt;!&ndash; Slide &ndash;&gt;-->
-<!--                                    <div class="swiper-slide">-->
-<!--                                        <div class="card">-->
-<!--                                            <img class="card-image" src="images/testimonial-2.jpg" alt="alternative">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <p class="testimonial-text">Eros volutpat ante mauris euismod sem, ut varius nisi lectus in urna. Integer luctus, nunc eget maximus intem, orci risus</p>-->
-<!--                                                <p class="testimonial-author">Roy Smith - Developer</p>-->
-<!--                                            </div>-->
-<!--                                        </div>        -->
-<!--                                    </div> &lt;!&ndash; end of swiper-slide &ndash;&gt;-->
-<!--                                    &lt;!&ndash; end of slide &ndash;&gt;-->
-<!--            -->
-<!--                                    &lt;!&ndash; Slide &ndash;&gt;-->
-<!--                                    <div class="swiper-slide">-->
-<!--                                        <div class="card">-->
-<!--                                            <img class="card-image" src="images/testimonial-3.jpg" alt="alternative">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <p class="testimonial-text">Sed congue ex quam, sit amet venenatis dolor lacinia vulputate. Nunc pulvinar ex ex, sit amet scelerisque tellus pretium semper</p>-->
-<!--                                                <p class="testimonial-author">Marsha Singer - Marketer</p>-->
-<!--                                            </div>-->
-<!--                                        </div>        -->
-<!--                                    </div> &lt;!&ndash; end of swiper-slide &ndash;&gt;-->
-<!--                                    &lt;!&ndash; end of slide &ndash;&gt;-->
-<!--            -->
-<!--                                    &lt;!&ndash; Slide &ndash;&gt;-->
-<!--                                    <div class="swiper-slide">-->
-<!--                                        <div class="card">-->
-<!--                                            <img class="card-image" src="images/testimonial-4.jpg" alt="alternative">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <p class="testimonial-text">Etiam est lorem, interdum non semper ut, bibendum vitae ante. Pellente sollicitun sagittis lectus. Aenean in comod</p>-->
-<!--                                                <p class="testimonial-author">Tim Shaw - Designer</p>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div> &lt;!&ndash; end of swiper-slide &ndash;&gt;-->
-<!--                                    &lt;!&ndash; end of slide &ndash;&gt;-->
-<!--            -->
-<!--                                    &lt;!&ndash; Slide &ndash;&gt;-->
-<!--                                    <div class="swiper-slide">-->
-<!--                                        <div class="card">-->
-<!--                                            <img class="card-image" src="images/testimonial-5.jpg" alt="alternative">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <p class="testimonial-text">Quisque nec turpis placerat, accumsan lorem lobortis, vestibulum elit. Fusce finibus nisl varius semper elementum vivamus</p>-->
-<!--                                                <p class="testimonial-author">Lindsay Spice - Marketer</p>-->
-<!--                                            </div>-->
-<!--                                        </div>        -->
-<!--                                    </div> &lt;!&ndash; end of swiper-slide &ndash;&gt;-->
-<!--                                    &lt;!&ndash; end of slide &ndash;&gt;-->
-<!--            -->
-<!--                                    &lt;!&ndash; Slide &ndash;&gt;-->
-<!--                                    <div class="swiper-slide">-->
-<!--                                        <div class="card">-->
-<!--                                            <img class="card-image" src="images/testimonial-6.jpg" alt="alternative">-->
-<!--                                            <div class="card-body">-->
-<!--                                                <p class="testimonial-text">Vulputate sed tellus nec, imperdiet luctus purus. Morbi lobortis massa a mi interdum condimentum. Integer non gravida nisi</p>-->
-<!--                                                <p class="testimonial-author">Ann Blake - Developer</p>-->
-<!--                                            </div>-->
-<!--                                        </div>        -->
-<!--                                    </div> &lt;!&ndash; end of swiper-slide &ndash;&gt;-->
-<!--                                    &lt;!&ndash; end of slide &ndash;&gt;-->
-<!--                                -->
-<!--                                </div> &lt;!&ndash; end of swiper-wrapper &ndash;&gt;-->
-<!--            -->
-<!--                                &lt;!&ndash; Add Arrows &ndash;&gt;-->
-<!--                                <div class="swiper-button-next"></div>-->
-<!--                                <div class="swiper-button-prev"></div>-->
-<!--                                &lt;!&ndash; end of add arrows &ndash;&gt;-->
-<!--            -->
-<!--                            </div> &lt;!&ndash; end of swiper-container &ndash;&gt;-->
-<!--                        </div> &lt;!&ndash; end of slider-container &ndash;&gt;-->
-<!--                        &lt;!&ndash; end of card slider &ndash;&gt;-->
 
-<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
-<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
-<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
-<!--        </div> &lt;!&ndash; end of slider-1 &ndash;&gt;-->
-<!--        &lt;!&ndash; end of testimonials &ndash;&gt;-->
+        <!-- Testimonials -->
+        <div class="slider-1 bg-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="h2-heading">Few words from our clients</h2>
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <!-- Card Slider -->
+                        <div class="slider-container">
+                            <div class="swiper-container card-slider">
+                                <div class="swiper-wrapper">
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <img class="card-image" src="images/testimonial-1.jpg" alt="alternative">
+                                            <div class="card-body">
+                                                <p class="testimonial-text">Tortor sodales eget. Vivamus imperdiet leo eu risus tincidunt uris. Proin placerat, urna hendrerit placerat erase convallis</p>
+                                                <p class="testimonial-author">Jude Thorn - Designer</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <img class="card-image" src="images/testimonial-2.jpg" alt="alternative">
+                                            <div class="card-body">
+                                                <p class="testimonial-text">Eros volutpat ante mauris euismod sem, ut varius nisi lectus in urna. Integer luctus, nunc eget maximus intem, orci risus</p>
+                                                <p class="testimonial-author">Roy Smith - Developer</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <img class="card-image" src="images/testimonial-3.jpg" alt="alternative">
+                                            <div class="card-body">
+                                                <p class="testimonial-text">Sed congue ex quam, sit amet venenatis dolor lacinia vulputate. Nunc pulvinar ex ex, sit amet scelerisque tellus pretium semper</p>
+                                                <p class="testimonial-author">Marsha Singer - Marketer</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <img class="card-image" src="images/testimonial-4.jpg" alt="alternative">
+                                            <div class="card-body">
+                                                <p class="testimonial-text">Etiam est lorem, interdum non semper ut, bibendum vitae ante. Pellente sollicitun sagittis lectus. Aenean in comod</p>
+                                                <p class="testimonial-author">Tim Shaw - Designer</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <img class="card-image" src="images/testimonial-5.jpg" alt="alternative">
+                                            <div class="card-body">
+                                                <p class="testimonial-text">Quisque nec turpis placerat, accumsan lorem lobortis, vestibulum elit. Fusce finibus nisl varius semper elementum vivamus</p>
+                                                <p class="testimonial-author">Lindsay Spice - Marketer</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                    <!-- Slide -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <img class="card-image" src="images/testimonial-6.jpg" alt="alternative">
+                                            <div class="card-body">
+                                                <p class="testimonial-text">Vulputate sed tellus nec, imperdiet luctus purus. Morbi lobortis massa a mi interdum condimentum. Integer non gravida nisi</p>
+                                                <p class="testimonial-author">Ann Blake - Developer</p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of swiper-slide -->
+                                    <!-- end of slide -->
+
+                                </div> <!-- end of swiper-wrapper -->
+
+                                <!-- Add Arrows -->
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                                <!-- end of add arrows -->
+
+                            </div> <!-- end of swiper-container -->
+                        </div> <!-- end of slider-container -->
+                        <!-- end of card slider -->
+
+                    </div> <!-- end of col -->
+                </div> <!-- end of row -->
+            </div> <!-- end of container -->
+        </div> <!-- end of slider-1 -->
+        <!-- end of testimonials -->
+
 
 
 <!--        &lt;!&ndash; Invitation &ndash;&gt;-->
@@ -551,148 +634,35 @@
 <!--        </div> &lt;!&ndash; end of basic-3 &ndash;&gt;-->
 <!--        &lt;!&ndash; end of invitation &ndash;&gt;-->
 
-        <!-- Project Gallery -->
-        <section id="project-gallery" class="py-5">
-            <div class="container">
-                <h2 class="text-center mb-5">Our Project Gallery</h2>
-                <div class="row">
-                    <!-- Project 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <picture>
-                                <source srcset="images/projects/project1/thumbnail.webp" type="image/webp">
-                                <source srcset="images/projects/project1/thumbnail.jpg" type="image/jpeg">
-                                <img src="images/projects/project1/thumbnail.jpg" class="card-img-top" alt="Project 1 Thumbnail">
-                            </picture>
-                            <div class="card-body">
-                                <h5 class="card-title">Balustrade replaced</h5>
-                                <p class="card-text">Balustrade replaced</p>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal1">View Gallery</button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Project 2 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <picture>
-                                <source srcset="images/projects/project2/thumbnail.webp" type="image/webp">
-                                <source srcset="images/projects/project2/thumbnail.jpg" type="image/jpeg">
-                                <img src="images/projects/project2/thumbnail.jpg" class="card-img-top" alt="Project 2 Thumbnail">
-                            </picture>
-                            <div class="card-body">
-                                <h5 class="card-title">Metal shed</h5>
-                                <p class="card-text">Metal shed.</p>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal2">View Gallery</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <picture>
-                                <source srcset="images/projects/project3/thumbnail.webp" type="image/webp">
-                                <source srcset="images/projects/project3/thumbnail.jpg" type="image/jpeg">
-                                <img src="images/projects/project3/thumbnail.jpg" class="card-img-top" alt="Project 3 Thumbnail">
-                            </picture>
-                            <div class="card-body">
-                                <h5 class="card-title">Home Office Setup</h5>
-                                <p class="card-text">Custom shelving, desk installation, and electrical work for a home office.</p>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#projectModal3">View Gallery</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Project Modals -->
-        <!-- Project 1 Modal -->
-        <div class="modal fade" id="projectModal1" tabindex="-1" aria-labelledby="projectModal1Label" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="projectModal1Label">Kitchen Renovation Gallery</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="carouselProject1" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <picture>
-                                        <source srcset="images/projects/project1/1.webp" type="image/webp">
-                                        <source srcset="images/projects/project1/1.jpg" type="image/jpeg">
-                                        <img src="images/projects/project1/1.jpg" class="d-block w-100" alt="Kitchen Before">
-                                    </picture>
-                                </div>
-                                <div class="carousel-item">
-                                    <picture>
-                                        <source srcset="images/projects/project1/2.webp" type="image/webp">
-                                        <source srcset="images/projects/project1/2.jpg" type="image/jpeg">
-                                        <img src="images/projects/project1/2.jpg" class="d-block w-100" alt="Kitchen Progress">
-                                    </picture>
-                                </div>
-                                <div class="carousel-item">
-                                    <picture>
-                                        <source srcset="images/projects/project1/3.webp" type="image/webp">
-                                        <source srcset="images/projects/project1/3.jpg" type="image/jpeg">
-                                        <img src="images/projects/project1/3.jpg" class="d-block w-100" alt="Kitchen After">
-                                    </picture>
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProject1" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselProject1" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project 2 Modal -->
-        <div class="modal fade" id="projectModal2" tabindex="-1" aria-labelledby="projectModal2Label" aria-hidden="true">
-            <!-- Similar structure to Project 1 Modal, but with images from project2 folder -->
-        </div>
-
-        <!-- Project 3 Modal -->
-        <div class="modal fade" id="projectModal3" tabindex="-1" aria-labelledby="projectModal3Label" aria-hidden="true">
-            <!-- Similar structure to Project 1 Modal, but with images from project3 folder -->
-        </div>
 
         <!-- Pricing -->
         <div id="pricing" class="cards-2 bg-gray">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="h2-heading">Free forever tier and 2 pro plans</h2>
+                        <h2 class="h2-heading">Affordable Services Tailored to Your Needs</h2>
+                        <p>Contact us to discuss your project and get a customized quote. No hidden fees, just straightforward pricing tailored to the scope of your work.</p>
                     </div> <!-- end of col -->
                 </div> <!-- end of row -->
                 <div class="row">
                     <div class="col-lg-12">
-                        
+
                         <!-- Card -->
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Free tier</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">
+                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Basic Services</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">
                                 </div>
                                 <ul class="list-unstyled li-space-lg">
-                                    <li>Fusce pulvinar eu mi acm</li>
-                                    <li>Curabitur consequat nisl bro</li>
-                                    <li>Reget facilisis molestie</li>
-                                    <li>Vivamus vitae sem in tortor</li>
-                                    <li>Pharetra vehicula ornares</li>
-                                    <li>Vivamus dignissim sit amet</li>
-                                    <li>Ut convallis aliquama set</li>
+                                    <li>General repairs and maintenance</li>
+                                    <li>Light fixture installation</li>
+                                    <li>Furniture assembly</li>
+                                    <li>Painting and wall touch-ups</li>
+                                    <li>Outdoor maintenance</li>
                                 </ul>
-                                <div class="price">Free</div>
-                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>
+                                <div class="price">Price on Request</div>
+                                <a href="contact.html" class="btn-solid-reg">Get a Quote</a>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -701,19 +671,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Advanced</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">
+                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Enhanced Services</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">
                                 </div>
                                 <ul class="list-unstyled li-space-lg">
-                                    <li>Nunc commodo magna quis</li>
-                                    <li>Lacus fermentum tincidunt</li>
-                                    <li>Nullam lobortis porta diam</li>
-                                    <li>Announcing of invita mro</li>
-                                    <li>Dictum metus placerat luctus</li>
-                                    <li>Sed laoreet blandit mollis</li>
-                                    <li>Mauris non luctus est</li>
+                                    <li>Plumbing repairs</li>
+                                    <li>Electrical troubleshooting</li>
+                                    <li>Minor renovation projects</li>
+                                    <li>Home safety installations</li>
                                 </ul>
-                                <div class="price">$19<span>/month</span></div>
-                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>
+                                <div class="price">Price on Request</div>
+                                <a href="contact.html" class="btn-solid-reg">Get a Quote</a>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -722,19 +689,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Professional</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">
+                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Comprehensive Services</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">
                                 </div>
                                 <ul class="list-unstyled li-space-lg">
-                                    <li>Quisque rutrum mattis</li>
-                                    <li>Quisque tristique cursus lacus</li>
-                                    <li>Interdum sollicitudin maec</li>
-                                    <li>Quam posuerei pellentesque</li>
-                                    <li>Est neco gravida turpis integer</li>
-                                    <li>Mollis felis. Integer id quam</li>
-                                    <li>Id tellus hendrerit lacinia</li>
+                                    <li>Full property maintenance</li>
+                                    <li>Interior and exterior projects</li>
+                                    <li>Custom remodeling and renovations</li>
+                                    <li>Complete safety assessments</li>
                                 </ul>
-                                <div class="price">$29<span>/month</span></div>
-                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>
+                                <div class="price">Price on Request</div>
+                                <a href="contact.html" class="btn-solid-reg">Get a Quote</a>
                             </div>
                         </div>
                         <!-- end of card -->
@@ -746,47 +710,155 @@
         <!-- end of pricing -->
 
 
+        <!--        &lt;!&ndash; Pricing &ndash;&gt;-->
+<!--        <div id="pricing" class="cards-2 bg-gray">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <h2 class="h2-heading">Call for a free quote</h2>-->
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        -->
+<!--                        &lt;!&ndash; Card &ndash;&gt;-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title">-->
+<!--                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Free tier</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">-->
+<!--                                </div>-->
+<!--                                <ul class="list-unstyled li-space-lg">-->
+<!--                                    <li>Fusce pulvinar eu mi acm</li>-->
+<!--                                    <li>Curabitur consequat nisl bro</li>-->
+<!--                                    <li>Reget facilisis molestie</li>-->
+<!--                                    <li>Vivamus vitae sem in tortor</li>-->
+<!--                                    <li>Pharetra vehicula ornares</li>-->
+<!--                                    <li>Vivamus dignissim sit amet</li>-->
+<!--                                    <li>Ut convallis aliquama set</li>-->
+<!--                                </ul>-->
+<!--                                <div class="price">Free</div>-->
+<!--                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; end of card &ndash;&gt;-->
+
+<!--                        &lt;!&ndash; Card &ndash;&gt;-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title">-->
+<!--                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Advanced</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">-->
+<!--                                </div>-->
+<!--                                <ul class="list-unstyled li-space-lg">-->
+<!--                                    <li>Nunc commodo magna quis</li>-->
+<!--                                    <li>Lacus fermentum tincidunt</li>-->
+<!--                                    <li>Nullam lobortis porta diam</li>-->
+<!--                                    <li>Announcing of invita mro</li>-->
+<!--                                    <li>Dictum metus placerat luctus</li>-->
+<!--                                    <li>Sed laoreet blandit mollis</li>-->
+<!--                                    <li>Mauris non luctus est</li>-->
+<!--                                </ul>-->
+<!--                                <div class="price">$19<span>/month</span></div>-->
+<!--                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; end of card &ndash;&gt;-->
+
+<!--                        &lt;!&ndash; Card &ndash;&gt;-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="card-title">-->
+<!--                                    <img class="decoration-lines" src="images/decoration-lines.svg" alt="alternative"><span>Professional</span><img class="decoration-lines flipped" src="images/decoration-lines.svg" alt="alternative">-->
+<!--                                </div>-->
+<!--                                <ul class="list-unstyled li-space-lg">-->
+<!--                                    <li>Quisque rutrum mattis</li>-->
+<!--                                    <li>Quisque tristique cursus lacus</li>-->
+<!--                                    <li>Interdum sollicitudin maec</li>-->
+<!--                                    <li>Quam posuerei pellentesque</li>-->
+<!--                                    <li>Est neco gravida turpis integer</li>-->
+<!--                                    <li>Mollis felis. Integer id quam</li>-->
+<!--                                    <li>Id tellus hendrerit lacinia</li>-->
+<!--                                </ul>-->
+<!--                                <div class="price">$29<span>/month</span></div>-->
+<!--                                <a href="sign-up.html" class="btn-solid-reg">Sign up</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; end of card &ndash;&gt;-->
+
+<!--                    </div> &lt;!&ndash; end of col &ndash;&gt;-->
+<!--                </div> &lt;!&ndash; end of row &ndash;&gt;-->
+<!--            </div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--        </div> &lt;!&ndash; end of cards-2 &ndash;&gt;-->
+<!--        &lt;!&ndash; end of pricing &ndash;&gt;-->
+
+
         <!-- Questions -->
         <div class="accordion-1">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2 class="h2-heading">Frequent questions</h2>
+                        <h2 class="h2-heading">Frequently Asked Questions</h2>
                     </div> <!-- end of col -->
-                </div> <!-- end of row -->   
+                </div> <!-- end of row -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="accordion" id="accordionExample">
-                            
-                            <!-- Accordion Item -->
+
+                            <!-- Accordion Item 1 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">How can I contact you quickly and get a reasonable quote more for my project?</button>
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        How can I get a quick quote for my project?
+                                    </button>
                                 </h2>
                                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">Sed lacinia cursus viverra. Nunc sed libero euismod, congue dui a, vulputate quam. Pellentesque neque nisi, ultrices ut ipsum ac, mattis sollicitudin neque. Ut ac nunc sem. Etiam id erat facilisis magna sagittis porta. Donec eu dolor eu dolor finibus sodales consectetur, et condimentum elit tincidunt</div>
+                                    <div class="accordion-body">
+                                        You can reach out through our contact form, email, or give us a call directly. To provide an accurate quote, we may ask for details about your project, including measurements, materials needed, and any specific requirements.
+                                    </div>
                                 </div>
                             </div>
                             <!-- end of accordion-item -->
 
-                            <!-- Accordion Item -->
+                            <!-- Accordion Item 2 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Is the Free Tier available for unlimited time or it will end more words after a while?</button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        What types of handyman services do you offer?
+                                    </button>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">Mauris faucibus placerat nisl. Sed eros odio, posuere at felis quis, tincidunt facilisis nibh. Nulla in ante sem. Nam aliquam urna nisi, cursus semper dolor convallis at. Duis vulputate est in consectetur, et condimentum elit tincidunt libero consectetur, et condimentum suis vulputate est in libero</div>
+                                    <div class="accordion-body">
+                                        We offer a wide range of services, including plumbing, electrical repairs, painting, carpentry, furniture assembly, and more. If you have a specific job in mind, feel free to ask, and we’ll let you know if it’s within our expertise.
+                                    </div>
                                 </div>
                             </div>
                             <!-- end of accordion-item -->
 
-                            <!-- Accordion Item -->
+                            <!-- Accordion Item 3 -->
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Can I use the app on mobile devices or it’s limited more words to desktop use?</button>
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Do you offer emergency handyman services?
+                                    </button>
                                 </h2>
                                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">Nullam at diam at mi facilisis consectetur at non turpis. Proin a felis nisi. Sed at orci rutrum, tincidunt magna vel, pharetra libero. Proin mauris orci, faucibus eget malesuada vel, consectetur, et condimentum elit tincidunt pellentesque vitae ligula. Pellentesque euismod tincidun</div>
+                                    <div class="accordion-body">
+                                        Yes, we understand that some repairs can't wait. For urgent issues, like plumbing leaks or electrical faults, we offer emergency services. Contact us, and we'll do our best to schedule a quick visit.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end of accordion-item -->
+
+                            <!-- Accordion Item 4 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Are you insured, and do you provide warranties for your work?
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        Absolutely. We are fully insured for all types of handyman work, and we stand behind the quality of our services. Most repairs and installations come with a warranty period, so you can have peace of mind about the work done.
+                                    </div>
                                 </div>
                             </div>
                             <!-- end of accordion-item -->
@@ -797,6 +869,7 @@
             </div> <!-- end of container -->
         </div> <!-- end of accordion-1 -->
         <!-- end of questions -->
+
 
 
         <!-- Footer -->
@@ -855,11 +928,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p class="p-small">Copyright © <a href="#your-link">Your name</a></p>
+                        <p class="p-small">Copyright © <a href="#your-link">Bimart</a></p>
                     </div> <!-- end of col -->
 
                     <div class="col-lg-6">
-                        <p class="p-small">Distributed By <a target="_blank" href="https://htmltemplates.co/">HTML Templates</a></p>    
+                        <p class="p-small">Managed by <a target="_blank" href="https://www.salinsltd.co.uk/">Salt and Light Solutions</a></p>
                     </div> <!-- end of col -->
                 </div> <!-- enf of row -->
             </div> <!-- end of container -->

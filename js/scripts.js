@@ -1,6 +1,6 @@
 /* Description: Custom JS file */
 
-/* Navigation*/
+/* Navigation */
 // Collapse the navbar by adding the top-nav-collapse class
 window.onscroll = function () {
 	scrollFunction();
@@ -14,7 +14,7 @@ window.onload = function () {
 function scrollFunction() {
 	if (document.documentElement.scrollTop > 30) {
 		document.getElementById("navbarExample").classList.add("top-nav-collapse");
-	} else if ( document.documentElement.scrollTop < 30 ) {
+	} else if (document.documentElement.scrollTop < 30) {
 		document.getElementById("navbarExample").classList.remove("top-nav-collapse");
 	}
 }
@@ -29,7 +29,7 @@ for (let i = 0; i < elements.length; i++) {
 }
 
 document.querySelector(".navbar-toggler").addEventListener("click", () => {
-  	document.querySelector(".offcanvas-collapse").classList.toggle("open");
+	document.querySelector(".offcanvas-collapse").classList.toggle("open");
 });
 
 // Hover on desktop
@@ -39,11 +39,11 @@ function toggleDropdown(e) {
 
 	setTimeout(
 		function () {
-		const shouldOpen = _d.matches(":hover");
-		_m.classList.toggle("show", shouldOpen);
-		_d.classList.toggle("show", shouldOpen);
+			const shouldOpen = _d.matches(":hover");
+			_m.classList.toggle("show", shouldOpen);
+			_d.classList.toggle("show", shouldOpen);
 
-		_d.setAttribute("aria-expanded", shouldOpen);
+			_d.setAttribute("aria-expanded", shouldOpen);
 		},
 		e.type === "mouseleave" ? 300 : 0
 	);
@@ -52,7 +52,7 @@ function toggleDropdown(e) {
 // On hover
 const dropdownCheck = document.querySelector('.dropdown');
 
-if (dropdownCheck !== null) { 
+if (dropdownCheck !== null) {
 	document.querySelector(".dropdown").addEventListener("mouseleave", toggleDropdown);
 	document.querySelector(".dropdown").addEventListener("mouseover", toggleDropdown);
 
@@ -70,10 +70,9 @@ if (dropdownCheck !== null) {
 	});
 }
 
-
 /* Rotating Text - Word Cycle */
 var checkReplace = document.querySelector('.replace-me');
-if (checkReplace !== null) { 
+if (checkReplace !== null) {
 	var replace = new ReplaceMe(document.querySelector('.replace-me'), {
 		animation: 'animated fadeIn',                       // Animation class or classes
 		speed: 2000,                                        // Delay between each phrase in miliseconds
@@ -87,7 +86,6 @@ if (checkReplace !== null) {
 		onComplete: false                                   // Function
 	});
 }
-  
 
 /* Card Slider - Swiper */
 var cardSlider = new Swiper('.card-slider', {
@@ -115,9 +113,7 @@ var cardSlider = new Swiper('.card-slider', {
 	}
 });
 
-
 /* Back To Top Button */
-// Get the button
 myButton = document.getElementById("myBtn");
 
 // When the user scrolls down 20px from the top of the document, show the button
@@ -134,3 +130,35 @@ function topFunction() {
 	document.body.scrollTop = 0; // for Safari
 	document.documentElement.scrollTop = 0; // for Chrome, Firefox, IE and Opera
 }
+
+/* Project Gallery Modal */
+// Script to display project images in a modal dynamically
+document.addEventListener('DOMContentLoaded', function() {
+	const modalImg = document.getElementById('galleryModalImg');
+	const modalTitle = document.getElementById('galleryModalTitle');
+	const modalDescription = document.getElementById('galleryModalDescription');
+	const galleryModal = document.getElementById('galleryModal');
+
+	// Add event listener for each gallery item to display image in modal
+	document.querySelectorAll('.gallery-item a').forEach(item => {
+		item.addEventListener('click', function(event) {
+			event.preventDefault();
+
+			const project = this.getAttribute('data-bs-project');
+			const description = this.getAttribute('data-bs-description');
+			const src = this.getAttribute('href');
+
+			modalImg.src = src;
+			modalTitle.textContent = project;
+			modalDescription.textContent = description;
+		});
+	});
+
+	// Reset modal content when closed
+	galleryModal.addEventListener('hidden.bs.modal', () => {
+		modalImg.src = '';
+		modalTitle.textContent = '';
+		modalDescription.textContent = '';
+	});
+});
+

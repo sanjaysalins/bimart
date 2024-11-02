@@ -844,8 +844,8 @@ a:hover {
 .cards-2 .card-body .price {
 	margin-bottom: 3rem;
 	color: #272556;
-	font-weight: 600;
-	font-size: 3.5rem;
+	font-weight: 100;
+	font-size: 1.5rem;
 	line-height: 2rem;
 	letter-spacing: -0.2px;
 }
@@ -1504,3 +1504,5 @@ a:hover {
 	/* end of extra pages */
 }
 /* end of min-width 1200px */
+
+
